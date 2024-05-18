@@ -32,7 +32,7 @@ int main(void) {
     SetTargetFPS(60);
 
     InitAudioDevice();
-    Music music = LoadMusicStream("ogi-feel-the-beat-expanded-191267.mp3");
+    Music music = LoadMusicStream("The Tower of Dreams (new).ogg");
     PlayMusicStream(music);
     AttachAudioStreamProcessor(music.stream, callback);
 
