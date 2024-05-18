@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "raylib.h"
 #define ARRAY_LEN(xs) sizeof(xs)/sizeof(xs[0])
 
@@ -27,12 +28,31 @@ void callback(void *bufferData, unsigned int frames) {
     }
 }
 
-int main(void) {
+char *shift_args(int *argc, char ***argv) {
+    assert(*argc > 0);
+    char *result = (**argv);
+    (*argv) += 1;
+    (*argc) -= 1;
+    return result;
+}
+
+
+int main(int argc, char **argv) {
+
+    const char *program = shift_args(&argc, &argv);
+
+    if (argc == 0) {
+        fprintf(stderr, "Usage: %s <input>\n", program);
+        fprintf(stderr, "ERROR: no input file is provided\n");
+        return 1;
+    }
+    const char *file_path = shift_args(&argc, &argv);
+
     InitWindow(800, 600, "Music");
     SetTargetFPS(60);
 
     InitAudioDevice();
-    Music music = LoadMusicStream("The Tower of Dreams (new).ogg");
+    Music music = LoadMusicStream(file_path);
     PlayMusicStream(music);
     AttachAudioStreamProcessor(music.stream, callback);
 
