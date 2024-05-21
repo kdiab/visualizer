@@ -121,7 +121,7 @@ void update(Sample *sample) {
         }
         a /= (size_t) f1 - (size_t) f + 1;
         float t = a/max;
-        DrawRectangle(m*cell_width, h/2 - h/2*t, cell_width, h/2*t, RED);
+        DrawRectangle(m*cell_width, h/2 - h/2*t, cell_width/2, h/2*t, BLUE);
         m += 1;
     }
     EndDrawing();

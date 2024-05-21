@@ -44,7 +44,7 @@ int main(void) {
     
     pi = atan2f(1, 1) * 4; // fortran trickery
     
-    size_t n = 8;
+    size_t n = 32;
     float in[n];
     float complex out[n];
 
