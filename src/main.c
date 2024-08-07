@@ -94,7 +94,7 @@ void update(Sample *sample) {
 
     BeginDrawing();
     ClearBackground(CLITERAL(Color) {
-        0x18, 0x18, 0x18, 0xFF
+        0x48, 0x48, 0x48, 0xFF
     });
 
     fft(in, 1, out, N);
@@ -121,7 +121,8 @@ void update(Sample *sample) {
         }
         a /= (size_t) f1 - (size_t) f + 1;
         float t = a/max;
-        DrawRectangle(m*cell_width, h/2 - h/2*t, cell_width/2, h/2*t, BLUE);
+        int c = (int)(t * 1000) % 255;
+        DrawRectangle(m*cell_width, h/2 - h/2*t, cell_width/2, h/2*t, CLITERAL(Color){ c, 109, 194, 255 });
         m += 1;
     }
     EndDrawing();
